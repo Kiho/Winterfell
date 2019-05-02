@@ -1,4 +1,6 @@
 # Change Log
+# 1.2.0 (5/1/2019)
+**Convert to es6**
 
 # [1.1.4](https://github.com/andrewhathaway/Winterfell/releases/tag/1.1.4) (2017-07-13)
 

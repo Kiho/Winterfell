@@ -9,10 +9,10 @@ const PREDICATE_TYPES = {
   GREATER_THAN_OR_EQUALS: 'GREATER_THAN_OR_EQUALS'
 };
 
-module.exports = function evaluatePredicates(predicates = [], questionAnswers) {
+export default function evaluatePredicates(predicates = [], questionAnswers) {
   const combinePredicates = (predicatessMet, predicate) => predicatessMet && evaluatePredicate(predicate, questionAnswers);
   return predicates.reduce(combinePredicates, true);
-}
+};
 
 function evaluatePredicate(predicate, questionAnswers) {
   const answer = questionAnswers[predicate.questionId];

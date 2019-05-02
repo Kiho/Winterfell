@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 class TextInput extends React.Component {
 
@@ -34,7 +34,7 @@ class TextInput extends React.Component {
     );
   }
 
-};
+}
 
 TextInput.defaultProps = {
   classes     : {},
@@ -47,4 +47,4 @@ TextInput.defaultProps = {
   onKeyDown   : () => {}
 };
 
-module.exports = TextInput;
+export default TextInput;

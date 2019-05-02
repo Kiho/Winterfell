@@ -1,6 +1,7 @@
-var React = require('react');
+import React from 'react';
 
 class SelectInput extends React.Component {
+  selectInput;
 
   constructor(props) {
     super(props);
@@ -29,7 +30,7 @@ class SelectInput extends React.Component {
               id={this.props.id}
               className={this.props.classes.select}
               value={this.state.value}
-              ref="select"
+              ref={c => this.selectInput=c}
               required={this.props.required
                           ? 'required'
                           : undefined}
@@ -47,12 +48,12 @@ class SelectInput extends React.Component {
      */
     this.handleChange({
       target : {
-        value : this.refs.select.value
+        value : this.selectInput.value
       }
     });
   }
 
-};
+}
 
 SelectInput.defaultProps = {
   classes     : {},
@@ -64,4 +65,4 @@ SelectInput.defaultProps = {
   onBlur      : () => {}
 };
 
-module.exports = SelectInput;
+export default SelectInput;

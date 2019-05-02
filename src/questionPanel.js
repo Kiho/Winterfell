@@ -1,13 +1,11 @@
-var React = require('react');
+import React from 'react';
 var _ = require('lodash').noConflict();
-var KeyCodez = require('keycodez');
-
-var Validation = require('./lib/validation');
-var ErrorMessages = require('./lib/errors');
-
-var Button = require('./button');
-var QuestionSet = require('./questionSet');
-var evaluatePredicates = require('./lib/evaluatePredicates');
+import KeyCodez from 'keycodez';
+import Validation from './lib/validation';
+import ErrorMessages from './lib/errors';
+import Button from './button';
+import QuestionSet from './questionSet';
+import evaluatePredicates from './lib/evaluatePredicates';
 
 class QuestionPanel extends React.Component {
 
@@ -254,7 +252,7 @@ class QuestionPanel extends React.Component {
     );
   }
 
-};
+}
 
 QuestionPanel.defaultProps = {
   validationErrors: {},
@@ -284,4 +282,4 @@ QuestionPanel.defaultProps = {
   panelHistory: [],
 };
 
-module.exports = QuestionPanel;
+export default QuestionPanel;

@@ -1,7 +1,7 @@
-var React = require('react');
+import React from 'react';
 var _     = require('lodash').noConflict();
 
-var Question = require('./question');
+import Question from './question';
 
 class QuestionSet extends React.Component {
 
@@ -18,6 +18,7 @@ class QuestionSet extends React.Component {
                   postText={question.postText}
                   value={this.props.questionAnswers[question.questionId]}
                   input={question.input}
+                  columnWidth={question.columnWidth}
                   classes={this.props.classes}
                   renderError={this.props.renderError}
                   renderRequiredAsterisk={this.props.renderRequiredAsterisk}
@@ -53,7 +54,7 @@ class QuestionSet extends React.Component {
     );
   }
 
-};
+}
 
 QuestionSet.defaultProps = {
   id                     : undefined,
@@ -71,4 +72,4 @@ QuestionSet.defaultProps = {
   onKeyDown              : () => {}
 };
 
-module.exports = QuestionSet;
+export default QuestionSet;

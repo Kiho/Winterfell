@@ -1,6 +1,6 @@
 var _            = require('lodash').noConflict();
-var Validator    = require('validator');
-var StringParser = require('./stringParser');
+import Validator from 'validator';
+import StringParser from './stringParser';
 
 var extraValidators = {
 
@@ -9,6 +9,17 @@ var extraValidators = {
    */
   isAccepted : (value, expected) => {
     return value == expected;
+  },
+
+  /*
+   * isWords Validation Mehod
+   */
+  isWords : (value, min, max) => {
+    if (!value) {
+      return false;
+    }
+    const len = value.split(' ').length;
+    return len >= min && (typeof max === 'undefined' || len <= max);
   },
 
   /*
@@ -90,30 +101,66 @@ var getActiveQuestions = (questions, questionAnswers, activeQuestions) => {
 
   questions
     .forEach(question => {
-      activeQuestions.push({
-        questionId  : question.questionId,
-        validations : question.validations
-      });
-
-      if (typeof question.input.options === 'undefined'
-          || question.input.options.length === 0) {
-        return;
-      }
-
-      question
-        .input
-        .options
-        .forEach(option => {
-          if (typeof option.conditionalQuestions === 'undefined'
-               || option.conditionalQuestions.length == 0
-               || questionAnswers[question.questionId] != option.value) {
-            return;
-          }
-
-          activeQuestions = getActiveQuestions(option.conditionalQuestions,
-                                               questionAnswers,
-                                               activeQuestions);
+      let isError = 0;
+      if (typeof question.mappingConditions !== 'undefined') {
+        let conditionCount = 0;
+        let conditionSuccessCount = 0;
+        question.mappingConditions.forEach(condition => {
+          Object.keys(condition).forEach(questionId => {
+            if (questionAnswers[questionId] !== undefined) {
+              conditionCount += 1;
+              if (
+                Array.isArray(condition[questionId]) &&
+                condition[questionId].indexOf(
+                  questionAnswers[questionId]
+                ) > -1
+              ) {
+                conditionSuccessCount += 1;
+              } else if (
+                !Array.isArray(condition[questionId]) &&
+                condition[questionId] ===
+                  questionAnswers[questionId]
+              ) {
+                conditionSuccessCount += 1;
+              }
+            }
+          });
         });
+        if (conditionCount !== conditionSuccessCount) {
+          isError = 1;
+        }
+      }
+      if (!isError) {
+        activeQuestions.push({
+          questionId  : question.questionId,
+          validations : question.validations
+        });
+
+        if (typeof question.input.options === 'undefined'
+            || question.input.options.length === 0) {
+          return;
+        }
+
+        question
+          .input
+          .options
+          .forEach(option => {
+            if (typeof option.conditionalQuestions === 'undefined'
+                 || option.conditionalQuestions.length == 0
+                 || questionAnswers[question.questionId] != option.value) {
+              return;
+            }
+            if (option.conditionalQuestions.length > 0 && option.conditionalQuestions[0].questionSetId !== undefined) {
+              option.conditionalQuestions.forEach(function (conditionalQuestions) {
+                activeQuestions = getActiveQuestions(conditionalQuestions.questions, questionAnswers, activeQuestions);
+              });
+            } else {
+              activeQuestions = getActiveQuestions(option.conditionalQuestions,
+                                                 questionAnswers,
+                                                 activeQuestions);
+            }
+          });
+      }
 
     });
 
@@ -222,7 +269,7 @@ var addValidationMethods = (methods) => {
   }
 };
 
-module.exports = {
+export default {
   validateAnswer                     : validateAnswer,
   getActiveQuestions                 : getActiveQuestions,
   getActiveQuestionsFromQuestionSets : getActiveQuestionsFromQuestionSets,

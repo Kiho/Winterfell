@@ -1,7 +1,7 @@
-var React = require('react');
+import React from 'react';
 var _     = require('lodash').noConflict();
 
-var InputTypes = require('./inputTypes');
+import InputTypes from './inputTypes';
 
 class Question extends React.Component {
 
@@ -102,9 +102,10 @@ class Question extends React.Component {
                              : [];
 
     let labelId = `${this.props.questionId}-label`;
+    let questionId = `${this.props.questionId}-section`;
 
     return (
-      <div className={this.props.classes.question}>
+      <div className={`${this.props.classes.question} ${questionId} col-${this.props.columnWidth}`}>
         {!!this.props.question
           ? (
               <label className={this.props.classes.label}
@@ -168,12 +169,13 @@ class Question extends React.Component {
     );
   }
 
-};
+}
 
 Question.defaultProps = {
   questionSetId          : undefined,
   questionId             : undefined,
   question               : '',
+  columnWidth            : '12',
   validateOn             : 'blur',
   validations            : [],
   text                   : undefined,
@@ -195,4 +197,4 @@ Question.defaultProps = {
   renderRequiredAsterisk : undefined
 };
 
-module.exports = Question;
+export default Question;

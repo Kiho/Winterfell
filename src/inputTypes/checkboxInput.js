@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 class CheckboxInput extends React.Component {
 
@@ -56,7 +56,7 @@ class CheckboxInput extends React.Component {
     );
   }
 
-};
+}
 
 CheckboxInput.defaultProps = {
   text     : '',
@@ -68,4 +68,4 @@ CheckboxInput.defaultProps = {
   onBlur   : () => {}
 };
 
-module.exports = CheckboxInput;
+export default CheckboxInput;

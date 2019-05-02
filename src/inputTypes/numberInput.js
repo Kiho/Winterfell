@@ -1,6 +1,6 @@
 import React from 'react';
 
-class PasswordInput extends React.Component {
+class NumberInput extends React.Component {
 
   constructor(props) {
     super(props);
@@ -18,11 +18,11 @@ class PasswordInput extends React.Component {
 
   render() {
     return (
-      <input type="password"
+      <input type="number"
              name={this.props.name}
              id={this.props.id}
              aria-labelledby={this.props.labelId}
-             className={this.props.classes.input}
+             className={`${this.props.classes.input} ${this.props.classes.questionInputClass}`}
              placeholder={this.props.placeholder}
              value={this.state.value}
              required={this.props.required
@@ -36,7 +36,7 @@ class PasswordInput extends React.Component {
 
 }
 
-PasswordInput.defaultProps = {
+NumberInput.defaultProps = {
   classes     : {},
   name        : '',
   id          : '',
@@ -47,4 +47,4 @@ PasswordInput.defaultProps = {
   onKeyDown   : () => {}
 };
 
-export default PasswordInput;
+export default NumberInput;

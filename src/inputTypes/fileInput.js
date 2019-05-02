@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 class FileInput extends React.Component {
 
@@ -29,7 +29,7 @@ class FileInput extends React.Component {
                   onBlur={this.props.onBlur.bind(null, this.state.value)} />
   }
 
-};
+}
 
 FileInput.defaultProps = {
   classes   : {},
@@ -40,4 +40,4 @@ FileInput.defaultProps = {
   onBlur    : () => {}
 };
 
-module.exports = FileInput;
+export default FileInput;

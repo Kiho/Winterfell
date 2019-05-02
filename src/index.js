@@ -1,8 +1,8 @@
-var React    = require('react');
-var ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
 var _        = require('lodash').noConflict();
 
-var QuestionPanel = require('./questionPanel');
+import QuestionPanel from './questionPanel';
 
 class Winterfell extends React.Component {
 
@@ -155,7 +155,7 @@ class Winterfell extends React.Component {
     this.props.onRender();
   }
 
-};
+}
 
 Winterfell.inputTypes    = require('./inputTypes');
 Winterfell.errorMessages = require('./lib/errors');
@@ -185,4 +185,4 @@ Winterfell.defaultProps = {
   onRender               : () => {}
 };
 
-module.exports = Winterfell;
+export default Winterfell;

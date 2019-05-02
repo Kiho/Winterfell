@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 class TextareaInput extends React.Component {
 
@@ -33,7 +33,7 @@ class TextareaInput extends React.Component {
     );
   }
 
-};
+}
 
 TextareaInput.defaultProps = {
   classes     : {},
@@ -45,4 +45,4 @@ TextareaInput.defaultProps = {
   onBlur      : () => {}
 };
 
-module.exports = TextareaInput;
+export default TextareaInput;

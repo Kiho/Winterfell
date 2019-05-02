@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 class Button extends React.Component {
 
@@ -18,7 +18,7 @@ class Button extends React.Component {
     );
   }
 
-};
+}
 
 Button.defaultProps = {
   text      : 'Submit',
@@ -26,4 +26,4 @@ Button.defaultProps = {
   onClick   : () => {}
 };
 
-module.exports = Button;
+export default Button;
