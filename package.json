@@ -30,7 +30,7 @@
   "author": "Andrew Hathaway <andrew@andrewhathaway.net>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/andrewhathaway/winterfell.git"
+    "url": "git://github.com/kiho/winterfell.git"
   },
   "license": "MIT",
   "peerDependencies": {},
